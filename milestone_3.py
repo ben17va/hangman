@@ -12,10 +12,10 @@ def check_guess(self,guess):
     guess = guess.lower 
     if guess in self.word:
         print (f"Good guess!'{guess} is in word")
-        for a,letter in enumerate(self.word):
+        for i,letter in enumerate(self.word):
             if guess == letter:
                 print("Well Done!")
-                self.word_guessed[a] == guess
+                self.word_guessed[i] == guess
                 print(self.num_letters)
             self.num_letters -= 1 
 
@@ -35,3 +35,16 @@ def ask_for_input(self):
          else:
             self.check_guess(guess)
             break
+
+def play_game():
+    word_list = ['apple','mango','peach','blueberry','banana']
+    num_list = 5
+    game = Hangman(word_list,num_list )
+    while True:
+        if game.num_lives == 0:
+            print("You Lost!")
+            break
+        elif game.num_letters > 0:
+            game.ask_for_input()
+        elif game.num_lives != 0 and game.num_letters < 0:
+            print("Congratulations, you have won the game!")
